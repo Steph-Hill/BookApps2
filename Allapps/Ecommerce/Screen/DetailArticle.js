@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, ActivityIndicator } from 'react-native'
 import React, {useState, useEffect} from 'react'
 import { FirebaseContext } from '../../../firebaseContext';
 import { useContext } from 'react';
+import MonArticle from '../Components/MonArticle';
 
 const NoArticle = () => {
 
@@ -58,13 +59,13 @@ const DetailArticle = ({route}) => {
 
   return (
     <View>
-        {  {/* Lance mon activityIndicator */}
+        {  
           (load == true)?<ActivityIndicator/>:
 
-          {/* informe si il y a ou pas d'articles */}
+          
           (article == null )?<NoArticle/> : 
             
-            <Text>{article.nom}</Text>
+            <MonArticle/>
           
           }
     </View>

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, FlatList, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 
 
@@ -16,7 +16,7 @@ const RenderArticle = ({article}) => {
 
     const onPressArticle = () => { 
 
-        //navigation.navigate('DetailArticle', {id: article.id})
+        navigation.navigate('DetailArticle', {id: article.id})
      }
 
     return(
@@ -26,6 +26,14 @@ const RenderArticle = ({article}) => {
                           >
 
             <Text style={styles.catText}>{article.nom}</Text>
+            <Image style={styles.image} source={{uri:article.image}}/>
+
+           
+
+        
+           
+
+
 
         </TouchableOpacity>
     )
@@ -39,7 +47,7 @@ const Articles = () => {
 
   return (
     <View style={styles.content}>
-      <Text style={styles.title}>Articles</Text>
+      <Text style={styles.title}> Mes Articles</Text>
       <FlatList
         data={dataArticle}
         renderItem={({item}) => <RenderArticle
@@ -71,7 +79,7 @@ const styles = StyleSheet.create({
     },
     toucheArticle:{
 
-        backgroundColor:'rgba(58, 226, 145, 0.8)',
+        backgroundColor:'rgba(58, 226, 145, 1)',
         margin : 10,
         padding:10,
         borderRadius:10,
@@ -85,6 +93,19 @@ const styles = StyleSheet.create({
         color:'white',
         flexDirection:'row',
         justifyContent:'center'
+
+    },
+    image:{
+        height:120,
+        width:120,
+        backgroundColor :'black'
+    }, 
+
+    description:{
+
+        backgroundColor:'red',
+        height: 200,
+        color:'white'
 
     }
 

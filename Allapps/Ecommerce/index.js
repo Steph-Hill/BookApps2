@@ -99,8 +99,7 @@ const App = () => {
               articles.forEach( articleData =>{
 
                 const tempArticle = {
-                                        id : articleData.id,
-                                        nom : articleData.data().nom
+                                        id : articleData.id,...articleData.data()
                                           }
                   //version destructurée
                                           /* {
