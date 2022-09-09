@@ -3,6 +3,8 @@ import React, {useState, useEffect} from 'react'
 import { FirebaseContext } from '../../../firebaseContext';
 import { useContext } from 'react';
 import MonArticle from '../Components/MonArticle';
+import { useNavigation } from '@react-navigation/native';
+
 
 const NoArticle = () => {
 
@@ -39,7 +41,7 @@ const DetailArticle = ({route}) => {
       // temps de chargement de 500ms
       setTimeout(()=>{
 
-        setArticle(rqArticle.data())
+        setArticle({id : id ,...rqArticle.data()})
           //arrete le chargement
           setload(false);
       },500)
@@ -57,6 +59,8 @@ const DetailArticle = ({route}) => {
 
      },[])
 
+     const navigation = useNavigation();
+
   return (
     <View>
         {  
@@ -65,7 +69,7 @@ const DetailArticle = ({route}) => {
           
           (article == null )?<NoArticle/> : 
             
-            <MonArticle/>
+            <MonArticle article={article}/>
           
           }
     </View>

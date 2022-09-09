@@ -1,4 +1,4 @@
-import { ADD_CATEGORIE, EDIT_LOGIN,ADD_ARTICLE } from "./type";
+import { ADD_CATEGORIE, EDIT_LOGIN, ADD_ARTICLE, ADD_PANIER } from "./type";
 
 import { COUNT_NUMB } from "./type";
 
@@ -26,3 +26,17 @@ export const addArticle= ( article ) => ({
     type : ADD_ARTICLE,
     payload : article
 })
+
+export const addPanier = (panier) => ({
+    type: ADD_PANIER,
+    payload: panier
+});
+
+export const removePanier = () => ({
+    type: REMOVE_PANIER,
+    payload: []
+});
+export const removeOnePanier = (panier) => ({
+    type: REMOVE_ONE_PANIER,
+    payload:panier
+});
