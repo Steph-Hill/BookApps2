@@ -5,6 +5,8 @@ import Categories from '../Components/Categories'
 
 import Articles from '../Components/Articles'
 
+import { styles } from '../../../theme/ecommerce/styles'
+
 const Home = () => {
   return (
     <View style={styles.content}>
@@ -16,11 +18,3 @@ const Home = () => {
 
 export default Home
 
-const styles = StyleSheet.create({
-    content :{
-
-        flex :1,
-        margin:25,
-
-    }
-})

@@ -20,10 +20,10 @@ const PanierItem = ({item}) => {
 
             <View style={styles.contentPanier}>
                     <Text style={styles.nom}>
-                            {item.nom}
+                            {item?.nom}
                     </Text>
                     <Text style={styles.prix}>
-                            {item.prix}€
+                            {item?.prix}€
                     </Text> 
                     
                     <Button

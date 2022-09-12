@@ -5,6 +5,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 
 import { useNavigation } from '@react-navigation/native';
+import { styles } from '../../../theme/ecommerce/styles';
 
 
 
@@ -25,7 +26,7 @@ const RenderArticle = ({article}) => {
                           onPress={onPressArticle}
                           >
 
-            <Text style={styles.catText}>{article.nom}</Text>
+            <Text style={styles.articleText}>{article.nom}</Text>
             <Image style={styles.image} source={{uri:article.image}}/>
 
            
@@ -46,8 +47,8 @@ const Articles = () => {
         console.log('mes articles ',dataArticle)
 
   return (
-    <View style={styles.content}>
-      <Text style={styles.title}> Mes Articles</Text>
+    <View style={styles.articleContent}>
+      <Text style={styles.articleTitle}> Mes Articles</Text>
       <FlatList
         data={dataArticle}
         renderItem={({item}) => <RenderArticle
@@ -62,52 +63,3 @@ const Articles = () => {
 
 export default Articles
 
-const styles = StyleSheet.create({
-
-    content :{
-        
-        
-        flex:1,
-
-       
-    },
-
-    title :{
-        fontSize:25,
-        color:'green',
-        fontWeight:'700'
-    },
-    toucheArticle:{
-
-        backgroundColor:'rgba(58, 226, 145, 1)',
-        margin : 10,
-        padding:10,
-        borderRadius:10,
-        height:200,
-        width:150
-    },
-    catText:{
-
-        fontSize:16,
-        fontWeight:'500',
-        color:'white',
-        flexDirection:'row',
-        justifyContent:'center'
-
-    },
-    image:{
-        height:120,
-        width:120,
-        backgroundColor :'black'
-    }, 
-
-    description:{
-
-        backgroundColor:'red',
-        height: 200,
-        color:'white'
-
-    }
-
-
-})

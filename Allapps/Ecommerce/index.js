@@ -20,6 +20,8 @@ import Home from './Screen/Home';
 
 import Setting from './Screen/Setting';
 
+import Panier from './Screen/Panier';
+
 
 const Tab = createBottomTabNavigator();
 
@@ -28,7 +30,7 @@ const Stack = createNativeStackNavigator();
 const Accueil = () => { 
   
     return(
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="DetailArticle" component={DetailArticle} />
       </Stack.Navigator>
@@ -137,7 +139,10 @@ const App = () => {
     
     
       <Tab.Navigator screenOptions={{ headerShown: false }}>
-        <Tab.Screen name="Accueil" component={Accueil} />
+
+        <Tab.Screen name="Accueil" component={Accueil}                        />
+        <Tab.Screen  name="Panier" component={Panier}/>
+
         <Tab.Screen name="Compte" component={Setting} />
 
       </Tab.Navigator>
