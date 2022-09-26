@@ -65,33 +65,43 @@ export const styles = StyleSheet.create({
     toucheArticle:{
 
         backgroundColor:colors.Color1,
-        margin : 10,
-        padding:10,
+      
         borderRadius:10,
-        height:200,
+        height:180,
         width:150
     },
     articleText:{
 
-        fontSize:16,
+        fontSize:15,
         fontWeight:'500',
-        color:colors.TextSecondary,
-        flexDirection:'row',
-        justifyContent:'center',
-        textTransform:'capitalize'
+        color:colors.BgColorSecondary,
+        textTransform:'capitalize',
+        textAlign:'center',
+        padding:5
 
     },
     image:{
-        height:120,
-        width:120,
-        backgroundColor :'black'
+        
+        height:100,
+        width:100,
+        backgroundColor :'black',
+        left:15,
+        
+        
     }, 
 
     description:{
 
         backgroundColor:'red',
-        height: 200,
+        height: 150,
         color:'white'
+
+    },
+    row:{
+
+        flex:1,
+        justifyContent:"space-around",
+        paddingBottom:20
 
     }
     /****End Articles */

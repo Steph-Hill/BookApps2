@@ -1,6 +1,7 @@
 import  React, {useContext, useEffect} from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import auth from '@react-native-firebase/auth';
 
 
 import { FirebaseContext } from '../../firebaseContext';
@@ -11,7 +12,8 @@ import { useDispatch } from 'react-redux'
 
 import { addCategorie } from '../../redux/action';
 
-import { addArticle } from '../../redux/action';
+import { addArticle, editUser } from '../../redux/action';
+
 
 
 import DetailArticle from './Screen/DetailArticle';
@@ -21,6 +23,10 @@ import Home from './Screen/Home';
 import Setting from './Screen/Setting';
 
 import Panier from './Screen/Panier';
+
+//Icones créées
+
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
 
 const Tab = createBottomTabNavigator();
@@ -125,6 +131,12 @@ const App = () => {
 
     }
 
+    const authStateChanged = (user) =>{
+
+      console.log('auhStateChange user', user )
+      dispatch(editUser(user))
+    }
+
   //initialisation de la page
   useEffect(()=>{
 
@@ -133,6 +145,9 @@ const App = () => {
     
     initArticles();
 
+    const subscriber = auth().onAuthStateChanged(authStateChanged);
+    return subscriber; // unsubscribe on unmount
+
   },[])
 
   return (
@@ -140,10 +155,40 @@ const App = () => {
     
       <Tab.Navigator screenOptions={{ headerShown: false }}>
 
-        <Tab.Screen name="Accueil" component={Accueil}                        />
-        <Tab.Screen  name="Panier" component={Panier}/>
+        <Tab.Screen name="Accueil" component={Accueil}
+        
+        options={{
+          
+          tabBarIcon: () => (
+            
+            <MaterialIcons name='home' size={18}/>
 
-        <Tab.Screen name="Compte" component={Setting} />
+          ) 
+
+        }}
+        
+        />
+        <Tab.Screen  name="Panier" component={Panier}
+         options={{
+          
+          tabBarIcon: () => (
+            
+            <MaterialIcons name='home' size={18}/>
+
+          ) 
+
+        }}/>
+
+        <Tab.Screen name="Compte" component={Setting} 
+         options={{
+          
+          tabBarIcon: () => (
+            
+            <MaterialIcons name='home' size={18}/>
+
+          ) 
+
+        }}/>
 
       </Tab.Navigator>
   

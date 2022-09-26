@@ -1,14 +1,18 @@
 import firestore from "@react-native-firebase/firestore";
+import auth from '@react-native-firebase/auth';
+
 
 class Firebase {
 
 
     firestore;
+    auth;
 
         constructor(){
 
             this.firestore = firestore();
-
+                
+            this.auth = auth();
 
 
         }

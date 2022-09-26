@@ -29,7 +29,7 @@ const RenderArticle = ({article}) => {
             <Text style={styles.articleText}>{article.nom}</Text>
             <Image style={styles.image} source={{uri:article.image}}/>
 
-           
+           <Text style={styles.articleText}>{article.prix} € </Text>
 
         
            
@@ -49,7 +49,9 @@ const Articles = () => {
   return (
     <View style={styles.articleContent}>
       <Text style={styles.articleTitle}> Mes Articles</Text>
-      <FlatList
+      <FlatList 
+        columnWrapperStyle={styles.row}
+        style={{margin:5}}
         data={dataArticle}
         renderItem={({item}) => <RenderArticle
                                 article={item}/>}

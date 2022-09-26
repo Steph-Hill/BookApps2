@@ -1,52 +1,54 @@
 import { View, Text } from 'react-native'
 import React,{useState, useContext} from 'react'
 import { useNavigation } from '@react-navigation/native'
-import { Button, Input } from '@rneui/themed';
-import Firebase from '../../../firebaseContext';
+import { Button,Input, Icon } from '@rneui/themed'
+import Firebase from '../../../firebaseContext/firebase'
 import auth from '@react-native-firebase/auth';
 
+//Mes Icons 
 import Icone from 'react-native-vector-icons/Feather'
 import Incone2 from 'react-native-vector-icons/FontAwesome5'
 
 
-const Connexion = () => {
+const Inscription = () => {
 
-  const navigation = useNavigation();
+    const navigation = useNavigation()
+// modifier mon etat de visibilité du mot de passe 
+    const [affMonDePasse, setaffMonDePasse] = useState(true);
 
-  // modifier mon etat de visibilité du mot de passe 
-  const [affMonDePasse, setaffMonDePasse] = useState(true);
+    const [email, setEmail] = useState();
 
-  const [email, setEmail] = useState();
+    const [motDePasse, setMoDePasse] = useState()
 
-  const [motDePasse, setMoDePasse] = useState()
+// ajout de mon firebase
+    const firebase = useContext(Firebase);
+    
+    const goToConnexion = () => {
 
-  // ajout de mon firebase
-  const firebase = useContext(Firebase);
+        navigation.navigate('Connexion')
+      }
 
-const goToInscription = () => {
+    const save = () => {
 
-  navigation.navigate('Inscription')
-}
+        console.log('- email:', email,'- mot de passe :', motDePasse)
 
-        const connect = () => {
+        auth()
+       
+            .createUserWithEmailAndPassword(email, motDePasse)
+            .then(() => {
+            console.log('User account created & signed in!');
+            })
+            .catch(error => {
+            
+            console.error(error);
+            });
+    }
 
-          console.log('- email:', email,'- mot de passe :', motDePasse)
-
-          auth()
-        
-              .signInWithEmailAndPassword(email, motDePasse)
-              .then(() => {
-              console.log('User account signed in!');
-              })
-              .catch(error => {
-              
-              console.error(error);
-              });
-        }
 
   return (
     <View>
-      <Text>Connexion</Text>
+      <Text>Inscription</Text>
+
       <Input
       
       leftIcon={
@@ -80,10 +82,12 @@ const goToInscription = () => {
        onChangeText={value=>setMoDePasse(value)}
        secureTextEntry={affMonDePasse}
     />
-    <Button title="Connexion"  onPress={connect} />
-      <Button title='Inscription' type='clear' onPress={goToInscription} />
+    <Button title="je m'inscris"  onPress={save} />
+
+      <Button title=' Je me Connecte' type='clear' onPress={goToConnexion} />
+      
     </View>
   )
 }
 
-export default Connexion
+export default Inscription

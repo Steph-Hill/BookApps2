@@ -1,76 +1,64 @@
-import { StyleSheet, Text, View, FlatList, Button } from 'react-native'
+import { StyleSheet, Text, View,FlatList } from 'react-native'
+import { Button } from '@rneui/themed'
 import React from 'react'
-import { useSelector } from 'react-redux'
-import { useDispatch } from 'react-redux'
+import { useSelector,useDispatch } from 'react-redux'
+import { removePanier,removeOnePanier } from '../../../redux/action'
+import PanierItem from '../Components/PanierItem'
 
-import { removePanier ,removeOnePanier } from '../../../redux/action'
 
-const PanierItem = ({item}) => {
-    const dispatch = useDispatch()
 
-    const removeOne = () => { 
-        
-        dispatch(removeOnePanier(item))
-
-     }
-
-    
-
-    return(
-
-            <View style={styles.contentPanier}>
-                    <Text style={styles.nom}>
-                            {item?.nom}
-                    </Text>
-                    <Text style={styles.prix}>
-                            {item?.prix}€
-                    </Text> 
-                    
-                    <Button
-                        styles = {styles.removeOne}
-                        onPress ={removeOne}
-                        title='Supp'
-                    />
-            </View>
-
-           
-                    
-
-    )
-
-}
 
 const Panier = () => {
+
     const {dataPanier} = useSelector(state=>state)
-    console.log('data Panier', dataPanier)
-    const dispatch = useDispatch()
+    console.log('dataPanier', dataPanier)
 
-    const remove = () => {
+    const dispatch = useDispatch();
 
-        //je vide mon panier
-        dispatch(removePanier);
-        console.log('remove', remove)
 
-    }
+     //Action de vider
+     const remove = () => {
+        
+        dispatch(removePanier()); //Je vide mon panier
+        console.log("Remove")
+     }
+
   return (
-    <View>
-        
-        <FlatList
-        
-            data={dataPanier}
-            renderItem={({item})=><PanierItem/>}
-            keyExtractor={item=>item.id}
-
-        />
-
-    <Button
-    
-        onPress={remove}
-        title='Vider le Panier'
-
-    />
+    <View style={styles.container}>
+     <FlatList
+        data={dataPanier}
+        renderItem={({item})=><PanierItem item={item}/>}
+        keyExtractor={item =>item.id}
+      />
+       <Button
+      
+      title='Vider le panier'
+      onPress={remove}
+  
+  />
+      <View style={styles.bottom}>
 
 
+{/***Footer Panier */}
+       <View style={styles.price}>
+            
+            <Text >  Prix</Text>
+      
+       </View>
+      
+       <View style={styles.acheter}>
+
+            
+            <Button
+            title='Acheter'
+           buttonStyle={styles.ButtonStyle}   
+           containerStyle={styles.containerButtonStyle}   
+            />
+       
+       </View>
+
+      </View>
+      {/***End Footer Panier */}
     </View>
   )
 }
@@ -78,23 +66,36 @@ const Panier = () => {
 export default Panier
 
 const styles = StyleSheet.create({
-    contentPanier: {
-        width:'100%',
+    container:{
+
+        flex:1,
+        justifyContent:'space-between',
+        backgroundColor:'red'
+    },
+    bottom:{
         height:100,
-        backgroundColor:'red',
-        padding:5,
-        margin:5,
-        borderRadius:10,
-        alignSelf:'center'
+        backgroundColor:'green',
+        flexDirection:'row',
+        justifyContent:'space-between',
         
-      },
-    
-      nom: {
-        color:'white',
-        fontSize:25
-      },
-    
-      prix: {
-        color:"black"
-      },
+        
+    },
+    price :{
+
+        flex:1,
+        backgroundColor:'orange',
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    acheter :{
+
+        flex:1,
+        backgroundColor:'yellow',
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    ButtonStyle:{
+        borderRadius:20,
+        backgroundColor:'#ccc'
+    },
 })

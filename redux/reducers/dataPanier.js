@@ -9,7 +9,11 @@ export default function (state = initStatePanier, action) {
 
         // return nextState
 
-        return !existItem (state, action.payload.id)?[...state, action.payload]: state
+        return !existItem (state, action.payload.id)
+        
+        ?[...state, action.payload]
+        
+        : state
         
     } else if (action.type == REMOVE_PANIER) { //vider mon Panier
 
@@ -25,6 +29,6 @@ export default function (state = initStatePanier, action) {
       
     } else{
         
-        return state
+        return state;
     }
 }

@@ -1,34 +1,24 @@
-import { StyleSheet, Text, View, Button } from 'react-native'
+import { View, Text } from 'react-native'
 import React from 'react'
+import auth from '@react-native-firebase/auth';
+import { Button } from '@rneui/themed';
 
-import { useDispatch } from 'react-redux'
-import {editlogin } from '../../../redux/action'
+const Deconnexion = () =>{
 
+  auth().signOut()
 
-const index = () => {
-    
-    const dispatch = useDispatch();
+}
 
-  const pressConnexion = () => {
-
-    dispatch(editlogin(false))
-
-        console.log('deconnexion')
-
-  }
+const Index = () => {
+  
   return (
     <View>
-      <Text>Tu es connecté!</Text>
-
-      <Button
-      title='deconnexion !'
-      onPress={pressConnexion}
-      color={'red'}
-      />
+      <Text>Mon Compte</Text>
+      <Button title="Deconnexion" color={'red'} onPress={Deconnexion} />
     </View>
+
+    
   )
 }
 
-export default index
-
-const styles = StyleSheet.create({})
+export default Index
