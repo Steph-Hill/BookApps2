@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity,Image } from 'react-native'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 
@@ -17,13 +17,20 @@ const MonArticle = ({article}) => {
 
   return (
     <View>
+      <Image
+      source={{uri:article.image}}
+      style={styles.imageArticle}
+      />
+
+      
       <Text>{article.nom}</Text>
+      
 
       <View>
 
           <TouchableOpacity style = {styles.panier} onPress = {ajouter}>
 
-            <Text style = {styles.textpanier}>Ajouter à votre panier</Text> 
+            <Text style = {styles.textpanier}>Ajouter</Text> 
 
           </TouchableOpacity>
 
@@ -68,4 +75,10 @@ const styles = StyleSheet.create({
   color:'black',
   alignSelf:'center'
   },
+  imageArticle:{
+height:300,
+
+
+
+  }
 })
