@@ -1,7 +1,8 @@
-import { View, Text } from 'react-native'
+import { View, Text, FlatList } from 'react-native'
 import React from 'react'
 import auth from '@react-native-firebase/auth';
 import { Button } from '@rneui/themed';
+import Commande from '../Components/Commande';
 
 const Deconnexion = () =>{
 
@@ -10,11 +11,13 @@ const Deconnexion = () =>{
 }
 
 const Index = () => {
-  
+
+
   return (
-    <View>
+    <View style={{flex:1}}>
       <Text>Mon Compte</Text>
-      <Button title="Deconnexion" color={'red'} onPress={Deconnexion} />
+      <Commande/>
+      <Button style={{alignItems:'flex-end'}} title="Deconnexion" color={'red'} onPress={Deconnexion} />
     </View>
 
     

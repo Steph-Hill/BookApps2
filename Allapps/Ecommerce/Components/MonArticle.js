@@ -30,7 +30,7 @@ const MonArticle = ({article}) => {
 
           <TouchableOpacity style = {styles.panier} onPress = {ajouter}>
 
-            <Text style = {styles.textpanier}>Ajouter</Text> 
+            <Text style = {styles.textpanier}>Ajouter à mon Panier</Text> 
 
           </TouchableOpacity>
 
@@ -76,7 +76,9 @@ const styles = StyleSheet.create({
   alignSelf:'center'
   },
   imageArticle:{
-height:300,
+  height:300,
+  borderRadius:50,
+  margin:50
 
 
 

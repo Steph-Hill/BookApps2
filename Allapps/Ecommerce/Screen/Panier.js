@@ -11,23 +11,48 @@ import firestore from '@react-native-firebase/firestore'
 
 import { styles as ecommerceStyles } from '../../../theme/ecommerce/styles'
 
+import moment from 'moment';
+
 
 
 const Panier = () => {
 
-    const addCommande = () => {
+    /***Création de ma commande */
 
-        console.log("addCommande :",addCommande )
+    const addCommande = async () => {//ajout d'async pour att l'exetion pour passer a la suivante(await) 
 
-        const commande = {
+        
 
-            etat:false,
-            total:montantTotal,
-            data:Date.now()
-        }
+        const commandeValue = {
+
+                    etat:   false,
+                    total:  montantTotal,
+                    uid : dataUser.uid,
+                    data:   moment(new Date()).format('D/M/YY') /**Creation du format de ma date**/
+            }
+        console.log("dataUser :",dataUser.uid )
+
+        
+        /**creation de ma collection : CommandeHillion */
+        /**ajout des données dans la table commande avec la fonction : add() */
+      const commande = await firestore().collection("CommandeHillion").add(commandeValue) //ajout d'await pour permettre de recuperer la valeur grace à l'async
+
+      console.log('commande id :',commande.id)//chercher l'id de commande
+
+     await dataPanier.map (async element =>{
+
+        //ajout le contenue de ma commande
+        await firestore().collection("CommandeHillion").doc(commande.id)
+                         .collection('Detail').add(element)//ajout des details du panier, dans la sous collection : Detail de CommandeHillion
+
+
+      })
+
+      remove();//vide mon panier quand je fait acheter
+
     }
 
-    const {dataPanier} = useSelector(state=>state)
+    const {dataPanier, dataUser} = useSelector(state=>state)
     console.log('dataPanier', dataPanier)
 
 
